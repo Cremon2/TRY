@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sleepy Message</title>
+	<style>
+		button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+		body {
+			text-align: center;
+		}
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+		.modal-content {
+			background-color: white;
+			margin: 10% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+			max-width: 400px;
+		}
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.close:hover,
+		.close:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h1>How Sleepy Are You?</h1>
+	<p>Click the button to rate your sleepiness level:</p>
+	<button onclick="showMessage()">Rate your sleepiness level</button>
+	<div id="myModal" class="modal">
+		 <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <p id="message"></p>
+		  </div>
+	</div>
+	<script>
+		// Get the modal
+		var modal = document.getElementById("myModal");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal
+		function showMessage() {
+			let message = "I ";
+			let sleepinessLevel = prompt("On a scale of 1-10, how sleepy are you?");
+			// add "want to sleep" to the message
+			message += "want to sleep ";
+			// add "so bad" to the message based on sleepiness level
+			if (sleepinessLevel >= 9) {
+			  message += "like right now, seriously!";
+			} else if (sleepinessLevel >= 7) {
+			  message += "pretty badly, I might nod off any minute...";
+			} else {
+			  message += "but I can probably make it a little longer.";
+			}
+			// display the message in a pop-up window
+			document.getElementById("message").innerHTML = message;
+			modal.style.display = "block";
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
